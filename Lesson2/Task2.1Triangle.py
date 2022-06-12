@@ -1,10 +1,9 @@
 from math import sqrt
 a, b, c = float(input()), float(input()), float(input())
-a > 0, b > 0, c > 0
 wrong = "Данные введены некорректно"
-if a:
-    if b:
-        if c:
+if a > 0:
+    if b > 0:
+        if c > 0:
             if a+b > c:
                 if b+c > a:
                     if c+a > b:

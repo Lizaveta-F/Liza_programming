@@ -1,6 +1,5 @@
 n = int(input())
-1000 <= n <= 9999
-if n:
+if 1000 <= n <= 9999:
     last_digit = n % 10
     third_digit = (n//10) % 10
     second_digit = (n//100) % 10
