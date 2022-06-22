@@ -3,6 +3,5 @@
 # Определите, сколько различных слов содержится в этом тексте.
 
 s = input().replace(".", " ").split()
-dif_quantity = len(set(s))
-k = set(s)
-print(len(k))
+quantity = set(s)
+print(len(quantity))
