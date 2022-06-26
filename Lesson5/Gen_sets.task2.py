@@ -5,5 +5,10 @@ text = '''
 stopwords = {
     'и', 'из', 'под', 'а', 'о', 'у', 'их',
 }
-words = [word for word in text.split() if word not in stopwords and word.isalnum() == True]
+symbols = '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'
+for symbol in symbols:
+    if symbol in text:
+        text = text.replace(symbol, "")
+words = [word for word in text.split(
+) if word not in stopwords and word.isalnum() == True]
 print(" ".join(words))
