@@ -17,6 +17,11 @@ def groups(a):
         last = i
     p.append([start, last])
     for i in p:
-        print(*i, sep="-", end=" ")
+        if i[0] == i[-1]:
+            print(i[0], end=" ")
+        else:
+            print(*i, sep="-", end=" ")
+
+
 a = list(map(int, input().split()))
 groups(a)
