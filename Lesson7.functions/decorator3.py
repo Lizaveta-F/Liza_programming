@@ -10,20 +10,14 @@
 # 10
 # 11
 # '''
-
-def generateAllBinaryStrings(n, arr, i):
-    if i == n:
-        print("".join(arr))
-        return arr
-    lst=[0]*n
-    while i <n:
-        lst[i]='0'
-        yield from lst
-        generateAllBinaryStrings(n, arr, i + 1)
-        arr[i] = '1'
-        generateAllBinaryStrings(n, arr, i + 1)
-
-
 n = int(input())
+def generateAllBinaryStrings(n,i):
+    lst=['0']*n
+    lst[i]='0'
+    yield from lst
+    generateAllBinaryStrings(n, i + 1)
+    lst[i] = '1'
+    generateAllBinaryStrings(n,  i + 1)
 
-generateAllBinaryStrings(n, [0]*n, 0)
+print([lst for lst in generateAllBinaryStrings(n,0)])
+
