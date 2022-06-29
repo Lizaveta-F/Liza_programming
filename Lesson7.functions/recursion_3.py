@@ -27,3 +27,20 @@ def binary_strings(n, arr, i):
 n = int(input())
 
 binary_strings(n, [0]*n, 0)
+
+
+# or:
+    
+# def generateAllBinaryStrings(n, k="", i=0):
+#     if i == n:
+#         print(k)
+#     else:
+#         s = '0'
+#         generateAllBinaryStrings(n, k+s, i + 1)
+#         s = '1'
+#         generateAllBinaryStrings(n, k+s, i + 1)
+#     return k
+
+
+# n = int(input())
+# print(generateAllBinaryStrings(n))

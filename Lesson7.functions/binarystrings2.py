@@ -11,18 +11,20 @@
 # 11
 # '''
 
-def generateAllBinaryStrings(n, lst, i):
-    if i == n:
-        print(lst)
-        return lst
-    lst[i] = '0'
-    generateAllBinaryStrings(n, lst, i + 1)
-    lst[i] = '1'
-    generateAllBinaryStrings(n, lst, i + 1)
-    # def generate(lst):
-    #     yield from (lst)
-n=int(input())
-generateAllBinaryStrings(n, [0]*n, 0)
+
+def getbin(n, s=['']):
+    if n > 0:
+        return [
+            *getbin(n - 1, [i + '0' for i in s]),
+            *getbin(n - 1, [j + '1' for j in s])]
+    return s
 
 
-" не понимаю, что менять..."
+def binary_strings(n, s=['']):
+    yield from getbin(n, s=[''])
+
+
+bin = binary_strings(3, s=[""])
+print(next(bin))
+print(next(bin))
+print(next(bin))
