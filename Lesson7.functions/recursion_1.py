@@ -10,5 +10,5 @@ def print_forward(n, *args):
         return print_forward(n[i:])
 
 
-n = list(map(int, input().split()))
+n = list(map(str, input().split()))
 print_forward(n)
