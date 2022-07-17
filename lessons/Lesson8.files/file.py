@@ -1,6 +1,4 @@
-from ctypes import alignment
 from pathlib import Path
-from unicodedata import name
 import matplotlib.pyplot as plt
 import json
 path_to_file = 'ratings.list'
