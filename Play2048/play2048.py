@@ -13,7 +13,6 @@ size = args.size
 boardSize = size
 
 
-
 def display():
     largest = board[0][0]
     for row in board:
@@ -36,33 +35,33 @@ def display():
 
 
 def mergeOneRowL(row):
-    score=0
+    score = 0
     for _ in range(boardSize-1):
         for i in range(boardSize-1, 0, -1):  # shift from right to left
             if row[i-1] == 0:  # check if there is a zero
                 row[i-1] = row[i]
                 row[i] = 0
     # Merge the Value
-        
+
     for i in range(boardSize-1):
         if row[i] == row[i+1]:  # check if the element is the same as the nearest one
             row[i] *= 2
-            row[i+1] = 0   
-        score+=row[i]
-    # with open('text.txt', 'w') as fh: 
+            row[i+1] = 0
+            score += row[i]
+    # with open('text.txt', 'w') as fh:
     #     fh.write(f'Score is {score}')????
-    
+
     for i in range(boardSize-1, 0, -1):
         if row[i-1] == 0:
             row[i-1] = row[i]
             row[i] = 0
-    return row
+    return row, score
 
 
 def merge_left(currentBoard):
     for i in range(boardSize):
-        currentBoard[i] = mergeOneRowL(currentBoard[i])
-    return currentBoard
+        currentBoard[i], score = mergeOneRowL(currentBoard[i])
+    return currentBoard, score
 
 
 def reverse(row):
@@ -75,9 +74,9 @@ def reverse(row):
 def merge_right(currentBoard):
     for i in range(boardSize):
         currentBoard[i] = reverse(currentBoard[i])
-        currentBoard[i] = mergeOneRowL(currentBoard[i])
+        currentBoard[i], score = mergeOneRowL(currentBoard[i])
         currentBoard[i] = reverse(currentBoard[i])
-    return currentBoard
+    return currentBoard, score
 
 
 def transpose(currentBoard):
@@ -92,16 +91,16 @@ def transpose(currentBoard):
 
 def merge_up(currentBoard):
     currentBoard = transpose(currentBoard)
-    currentBoard = merge_left(currentBoard)
+    currentBoard, score = merge_left(currentBoard)
     currentBoard = transpose(currentBoard)
-    return currentBoard
+    return currentBoard, score
 
 
 def merge_down(currentBoard):
     currentBoard = transpose(currentBoard)
-    currentBoard = merge_right(currentBoard)
+    currentBoard, score = merge_right(currentBoard)
     currentBoard = transpose(currentBoard)
-    return currentBoard
+    return currentBoard, score
 
 
 def pickNewValue():
@@ -168,19 +167,18 @@ gameOver = False
 
 while not gameOver:
     move = input(" Which way do you want to go? ")
-
     validInput = True
 
     tempBoard = copy.deepcopy(board)
 
     if move == "d" or move == "D" or move == "right":
-        board = merge_right(board)
+        board, score = merge_right(board)
     elif move == "a" or move == "A" or move == "left":
-        board = merge_left(board)
+        board, score = merge_left(board)
     elif move == "w" or move == "W" or move == "up":
-        board = merge_up(board)
+        board, score = merge_up(board)
     elif move == "s" or move == "S" or move == "down":
-        board = merge_down(board)
+        board, score = merge_down(board)
     else:
         validInput = False
 
