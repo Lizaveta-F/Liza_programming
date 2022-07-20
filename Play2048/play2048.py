@@ -10,7 +10,7 @@ parser.add_argument("--size", default=4, help="Enter the size")
 args = parser.parse_args()
 size = args.size
 
-boardSize = size
+boardSize = int(size)
 
 
 def display():
@@ -18,7 +18,7 @@ def display():
     for row in board:
         for element in row:
             if element > largest:
-                largest = element
+                largedsst = element
 
     numSpaces = len(str(largest))
 
@@ -166,12 +166,14 @@ display()
 gameOver = False
 
 while not gameOver:
-    move = input(" Which way do you want to go? ")
+    
     validInput = True
 
     tempBoard = copy.deepcopy(board)
-
-    if move == "d" or move == "D" or move == "right":
+    event = keyboard.read_event()
+    if event.event_type != 'up': continue
+    move = event.name
+    if move == "d" or move == "D" or move =='right':
         board, score = merge_right(board)
     elif move == "a" or move == "A" or move == "left":
         board, score = merge_left(board)
