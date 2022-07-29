@@ -1,8 +1,10 @@
 
+import pickle
 import random
 import copy
 import argparse
 import keyboard
+import json
 
 
 parser = argparse.ArgumentParser()
@@ -18,7 +20,7 @@ def display():
     for row in board:
         for element in row:
             if element > largest:
-                largedsst = element
+                largest = element
 
     numSpaces = len(str(largest))
 
@@ -26,15 +28,16 @@ def display():
         currRow = "|"
         for element in row:
             if element == 0:
-                currRow += " " * numSpaces + "|"
+                currRow += " "*numSpaces + "|"
             else:
-                currRow += (" "*(numSpaces - len(str(element)))) + \
-                    str(element) + "|"
+                currRow += (" "*(numSpaces - len(str(element)))) + str(element) + "|"
         print(currRow)
     print()
 
 
+
 def mergeOneRowL(row):
+    global score
     score = 0
     for _ in range(boardSize-1):
         for i in range(boardSize-1, 0, -1):  # shift from right to left
@@ -48,20 +51,29 @@ def mergeOneRowL(row):
             row[i] *= 2
             row[i+1] = 0
             score += row[i]
-    # with open('text.txt', 'w') as fh:
-    #     fh.write(f'Score is {score}')????
+            
 
     for i in range(boardSize-1, 0, -1):
         if row[i-1] == 0:
             row[i-1] = row[i]
             row[i] = 0
-    return row, score
+    return row
 
+def save_state(state):
+    with open('state.pkl', 'wb') as fh:
+    	pickle.dump(state, fh)
+#     score=mergeOneRowL(score)
+#     with open('score.txt', 'w') as fh:
+#         json.dump(score,fh)
+#     with open('score.txt','r') as json_file:
+#         score = json.loads(json_file.read())    
+#     print(f"Your score is {score}")
+    
 
 def merge_left(currentBoard):
     for i in range(boardSize):
-        currentBoard[i], score = mergeOneRowL(currentBoard[i])
-    return currentBoard, score
+        currentBoard[i] = mergeOneRowL(currentBoard[i])
+    return currentBoard
 
 
 def reverse(row):
@@ -74,9 +86,9 @@ def reverse(row):
 def merge_right(currentBoard):
     for i in range(boardSize):
         currentBoard[i] = reverse(currentBoard[i])
-        currentBoard[i], score = mergeOneRowL(currentBoard[i])
+        currentBoard[i] = mergeOneRowL(currentBoard[i])
         currentBoard[i] = reverse(currentBoard[i])
-    return currentBoard, score
+    return currentBoard
 
 
 def transpose(currentBoard):
@@ -91,17 +103,16 @@ def transpose(currentBoard):
 
 def merge_up(currentBoard):
     currentBoard = transpose(currentBoard)
-    currentBoard, score = merge_left(currentBoard)
+    currentBoard = merge_left(currentBoard)
     currentBoard = transpose(currentBoard)
-    return currentBoard, score
+    return currentBoard
 
 
 def merge_down(currentBoard):
     currentBoard = transpose(currentBoard)
-    currentBoard, score = merge_right(currentBoard)
+    currentBoard = merge_right(currentBoard)
     currentBoard = transpose(currentBoard)
-    return currentBoard, score
-
+    return currentBoard
 
 def pickNewValue():
     if random.randint(1, 8) == 1:
@@ -173,14 +184,14 @@ while not gameOver:
     event = keyboard.read_event()
     if event.event_type != 'up': continue
     move = event.name
-    if move == "d" or move == "D" or move =='right':
-        board, score = merge_right(board)
-    elif move == "a" or move == "A" or move == "left":
-        board, score = merge_left(board)
-    elif move == "w" or move == "W" or move == "up":
-        board, score = merge_up(board)
-    elif move == "s" or move == "S" or move == "down":
-        board, score = merge_down(board)
+    if move in ("d","D","right"):
+        board = merge_right(board)
+    elif move in("a","A" ,"left"):
+        board = merge_left(board)
+    elif move in ("w", "W", "up"):
+        board = merge_up(board)
+    elif move in ("s","S","down"):
+        board = merge_down(board)
     else:
         validInput = False
 
@@ -197,7 +208,7 @@ while not gameOver:
             else:
                 addNewValue()
                 display()
-                print(f"Your score is {score}")
+                # save_state(score)
                 if noMoves():
                     print("Sorry, you lost the game")
                     gameOver = True

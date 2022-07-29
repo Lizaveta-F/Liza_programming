@@ -15,7 +15,7 @@ if path.is_file():
     years = [year[year.find('(')+1:year.find(')')] for year in films]
     years_ratings = dict(zip(years, ratings))
 
-    # In case top250 films are note rated( extracted from the original data with all the films)
+    # In case top250 films are not rated( extracted from the original data with all the films)
     # all=(top250[296:789452])
     # alldata1=[column.split('   ') for column in all]
     # films1=[film[-1] for film in alldata1]
