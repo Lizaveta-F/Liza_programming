@@ -1,3 +1,4 @@
+from msilib.schema import ListView
 from django.shortcuts import render
 from django.contrib import messages
 from django.contrib.auth import (
@@ -21,6 +22,7 @@ from .models import  Topics,Questions,Comments
 from .forms import TopicsForm
 from django.views.generic import DetailView,TemplateView,View
 from django.http import HttpResponseRedirect,HttpResponse
+from django.db.models import Count,Q
 
 
 
@@ -84,10 +86,10 @@ def topics(request):
             instance.user = request.user
             instance.save()
             return redirect('topics')
-    num_questions = Questions.objects.all().count()   # ?????  how to count correctly
+    questions = Topics.objects.annotate(questions_count=Count('quests')) 
     form = TopicsForm()
-    alltopics = Topics.objects.order_by('-date')
-    data = {'form':form,'alltopics': alltopics,'num_questions':num_questions}
+    alltopics = Topics.objects.all()
+    data = {'form':form,'alltopics': alltopics,'questions':questions}
     
     return render(request,'forum/topics.html',data)
 
@@ -97,87 +99,76 @@ class questionadd(DetailView):
     template_name = 'forum/onetopic.html'
     context_object_name = 'quest'
     form1 = QuestionForm()
+    
+    def get(self, request, topic_slug):     
+        topic = get_object_or_404(Topics, slug=topic_slug)
+        queryset = topic.quests.all()
+        form1 = self.form1        
+        context = {
+        'form1': form1,'allquestions':Questions.objects.filter(topic=topic.pk),'topic':topic,'queryset':queryset}
+        return render(request, self.template_name, context=context)
+    
+
+    def post(self, request, topic_slug):
+        
+        form1 = QuestionForm(request.POST)
+        if request.method == 'POST' and 'btnaddquestion' in request.POST: 
+            topic = Topics.objects.get(slug=topic_slug)
+            
+            if form1.is_valid():
+                question = form1.save(commit=False)
+                question.user = request.user
+                question.topic = topic
+                question.save()
+                return redirect('exactopic',topic_slug=topic_slug)
+            
+        context = {
+        'form1': form1,'allquestions':Questions.objects.filter(topic=topic.pk),'topic':topic}
+        return render(request, self.template_name, context=context)
+    
+
+
+
+class commentadd(DetailView):
+    model = Questions
+    template_name = 'forum/onequestion.html'
+    context_object_name = 'comms'
     form2 = CommentForm()
     
-    def get(self, request, *args, **kwargs):
-        topic = Topics.objects.get(pk=kwargs['pk'])
-        form1 = self.form1
-        form2 = self.form2
-        print('topics')
-        for item in Topics.objects.all():
-            print(item.pk)
-
-        print('questions')
-        for item in Questions.objects.all():
-            print(item.pk, item.topic)
+    def get(self, request, question_slug,topic_slug):
+        topic = get_object_or_404(Topics, slug=topic_slug)
+        question = Questions.objects.filter(slug=question_slug).first()
+        
+        form2 = self.form2       
         context = {
-        'form1': form1,
-        'form2': form2,'allquestions':Questions.objects.all(),'topic':topic}
+        'form2': form2,'allcomments':Comments.objects.filter(question=question.pk),'question':question,
+        'topic':topic}
         return render(request, self.template_name, context=context)
     
-        # print(500)
-        # form1 = self.form1
-        # form2 = self.form2
-        # return render(request, self.template_name, {'form1': form1,'form2':form2})
 
-    def post(self, request, *args, **kwargs):
-        form1 = QuestionForm(request.POST)
+    def post(self, request, question_slug,topic_slug):
         form2 = CommentForm(request.POST)
-        if request.method == 'POST' and 'btnaddquestion' in request.POST: 
-            if form1.is_valid():
-                form1.save(commit=False)
-                form1.user = request.user
-                form1.save()
-                return redirect('exactopic',pk=kwargs['pk'])
-        elif request.method == 'POST' and 'comment' in request.POST:          
+        topic = Topics.objects.get(slug=topic_slug)
+        question = Questions.objects.filter(slug=question_slug).first()
+        if request.method == 'POST' and 'commentbtn' in request.POST: 
             if form2.is_valid():
-                form2.save(commit=False)
-                form2.user = request.user
-                form2.save()
-                return redirect('exactopic',pk=kwargs['pk'])
-        topic = Topics.objects.get(pk=kwargs['pk'])
+                comment = form2.save(commit=False)
+                comment.user = request.user
+                comment.question = question
+                # question.topic = topic
+                comment.topic = topic
+                comment.save()
+                return redirect('exactquestion',question_slug=question_slug,topic_slug=topic_slug)           
         context = {
-        'form1': form1,
-        'form2': form2,'allquestions':Questions.objects.all(),'topic':topic}
+        'form2': form2,'allcomments':Comments.objects.filter(question=question.pk),
+        'topic':topic,'question':question}
         return render(request, self.template_name, context=context)
-    
 
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-# def questionadd(request,pk):
-#     topic=Topics.objects.get(pk=pk)
-#     form1 = QuestionForm()
-#     form2 = CommentForm()
-#     if request.method == "GET":
-#         pass
-#     if request.method == 'POST' and 'btnaddquestion' in request.POST: 
-#         if form1.is_valid():
-#                  form1.save()
-#                  return redirect('exactopic')
-#     if request.method == 'POST' and 'comment' in request.POST:          
-#         if form2.is_valid():
-#             form2.save()
-#             return redirect('exactopic')
-#     allquestions = Questions.objects.all()
-#     topic=Topics.objects.get(id=id)
-#     allcomments = Comments.objects.get(topic=topic)         
-#     context = {
-#      'form1': form1,
-#      'form2': form2,'allquestions':allquestions,'allcomments':allcomments}
-#     return render(request, template_name = 'forum/onetopic.html',context=context)
-   
 
         
         

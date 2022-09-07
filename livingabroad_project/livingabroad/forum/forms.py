@@ -98,7 +98,7 @@ class TopicsForm(ModelForm):
                             widget=forms.widgets.Textarea(
                                 attrs={
                                 "placeholder": "Define a topic ...",
-                                "class": "textarea ",
+                                "class": "topictextarea ",
                                 }
                                 ),
                                 label="",)
@@ -112,21 +112,21 @@ class QuestionForm(ModelForm):
                             widget=forms.widgets.Textarea(
                                 attrs={
                                 "placeholder": "Ask a question ...",
-                                "class": "textarea ",
+                                "class": "questtextarea ",
                                 }
                                 ),
                                 label="",)
     
     class Meta:
         model = Questions
-        fields = ['question']
+        fields = ['question',]
         
         
 class CommentForm(ModelForm):
     comment = forms.CharField(required=True,widget=forms.widgets.Textarea(
                                 attrs={
                                 "placeholder": "You can leave your comment here ...",
-                                "class": "textarea1 ",
+                                "class": "commenttextarea ",
                                 }
                             ),
                                 label="",
@@ -134,7 +134,7 @@ class CommentForm(ModelForm):
     
     class Meta:
         model = Comments
-        fields = ['comment']
+        fields = ['comment',]
         
         
         

@@ -10,13 +10,15 @@ class PersonAdmin(admin.ModelAdmin):
     
 @admin.register(Topics)
 class TopicsAdmin(admin.ModelAdmin):
-    list_display = ("id","topic", "date")
+    list_display = ("id","slug","topic", "date")
+    prepopulated_fields = {"slug": ("topic", )}
     
 @admin.register(Questions)
 class QuestionsAdmin(admin.ModelAdmin):
-    list_display = ("topic","question", "date")
+    list_display = ("slug","topic","question", "date")
+    prepopulated_fields = {"slug": ("question", )}
 
 @admin.register(Comments)
 class CommentsAdmin(admin.ModelAdmin):
-    list_display = ("id","comment", "date")
-    
+    list_display = ("id","slug","topic","question","comment", "date")
+    prepopulated_fields = {"slug": ("comment", )}

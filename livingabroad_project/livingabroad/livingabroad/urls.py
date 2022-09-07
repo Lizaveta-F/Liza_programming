@@ -23,6 +23,7 @@ urlpatterns = [
     path('',include('main.urls')),#добавили путь к главной странице приложения main
     path('vacancies/',include('vacancies.urls')),
     path('forum/',include('forum.urls')),
+    path('rent/',include('rent.urls')),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 

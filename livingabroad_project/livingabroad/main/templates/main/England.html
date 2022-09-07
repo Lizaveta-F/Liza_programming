@@ -43,7 +43,7 @@
         <p>
         Getting your head around the UK job market is the first step you should take when searching for new employment. 
         The UK is one of the strongest economies in the world and therefore attracts large numbers of ambitious minds to its workforce.</p>
-        <button class="btnall">Jobs in England</button> 
+        <button class="btnall"> <a href="{% url 'work_england' %}" class="btn-others">Jobs in England</a> </button> 
       </div>
       <div class="col" >
         <img src="{% static 'main/pictures/engwork.jpeg' %}" alt="work in England" height="300px" class="engfoto">
@@ -75,7 +75,7 @@
         RENTING a house in the UK is often the first step for those moving to the country - with a range of options in house size, 
         contract length and even finding properties with furniture included. 
         But is it expensive to rent a house in the UK?</p>
-        <button class="btnall">Rent in England</button> 
+        <button class="btnall"><a href="{% url 'england_rent' %}" class="btn-others">Rent in England</a></button> 
       </div>
       <div class="col" >
         <img src="{% static 'main/pictures/engflat.jpeg' %}" alt="flats in England" height="300px" class="engfoto">

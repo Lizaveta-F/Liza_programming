@@ -2,7 +2,8 @@ import datetime
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.conf import settings
-from django.utils.text import slugify
+from django.template.defaultfilters import slugify
+from django.urls import reverse
 
 #manager for our custom model 
 class MyAccountManager(BaseUserManager):
@@ -70,12 +71,20 @@ class Topics(models.Model):
     
     topic = models.CharField(max_length=100)
     date = models.DateField("Date of publication", default=datetime.date.today)
-    # slug = models.SlugField(max_length=100,allow_unicode=True,unigue=True, blank = True)
+    slug=models.SlugField(max_length=100,blank=True,editable=False)
     user = models.ForeignKey(Account,blank=True, null=True,on_delete=models.SET_NULL)
 
     ordering = ('-date',)
     def __str__(self):
         return self.topic
+    
+    def save(self, *args, **kwargs):       
+        self.slug = slugify(self.topic)
+        super(Topics, self).save(*args, **kwargs)
+        
+    def get_absolute_url(self):
+        return reverse('exactopic', kwargs={'topic_slug': self.slug})
+
     
     class Meta:
         verbose_name = "Topic"
@@ -86,16 +95,24 @@ class Topics(models.Model):
         
 class Questions(models.Model):
     
-    topic = models.ForeignKey(Topics,blank=True, null=True,on_delete=models.CASCADE)
+    topic = models.ForeignKey(Topics,blank=True, null=True,on_delete=models.CASCADE,related_name='quests')
     question = models.CharField(max_length=200)
     date = models.DateField("Date of publication", default=datetime.date.today)
     user = models.ForeignKey(Account,blank=True, null=True,on_delete=models.SET_NULL)
-
+    slug=models.SlugField(max_length=200,blank=True,editable=False)
     
     ordering = ('-date',)
     
     def __str__(self):
         return self.question
+    
+    def save(self, *args, **kwargs):       
+        self.slug = slugify(self.topic)
+        super(Questions, self).save(*args, **kwargs)
+        
+    def get_absolute_url(self):
+        return reverse('exactquestion', kwargs={'question_slug': self.slug, 'topic_slug':self.topic.slug})
+    
     
     class Meta:
         verbose_name = "Question"
@@ -103,8 +120,9 @@ class Questions(models.Model):
         
 class Comments(models.Model):
     
-    topic = models.ForeignKey(Topics,blank=True, null=True,on_delete=models.CASCADE)
-    question = models.ForeignKey(Questions,blank=True, null=True,on_delete=models.CASCADE)
+    topic = models.ForeignKey(Topics,blank=True, null=True,on_delete=models.CASCADE,related_name='commentstop')
+    slug=models.SlugField(max_length=400,blank=True,editable=False)
+    question = models.ForeignKey(Questions,blank=True, null=True,on_delete=models.CASCADE,related_name='comments')
     comment = models.TextField(max_length=400)
     date = models.DateField("Date of publication", default=datetime.date.today)
     user = models.ForeignKey(Account,blank=True, null=True,on_delete=models.SET_NULL)
@@ -114,6 +132,10 @@ class Comments(models.Model):
     def __str__(self):
         return self.comment
     
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.topic)
+        super(Comments, self).save(*args, **kwargs)
+
     class Meta:
         verbose_name = "Comment"
         verbose_name_plural = "Comments"

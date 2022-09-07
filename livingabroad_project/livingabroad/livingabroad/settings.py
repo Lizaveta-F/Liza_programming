@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'main',
     'forum',
     'vacancies',
+    'rent',
     'widget_tweaks',
     'django.contrib.admin',
     'django.contrib.auth',

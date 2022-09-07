@@ -52,12 +52,12 @@
 <div class="container mainblock">
   <div class="row blockn">
     <div class="row">
-      <div class="col-8 textopic"><p> <a href="{% url 'exactopic' el.id %}">{{ el.topic }}</a></p></div>
+      <div class="col-9 textopic"><p> <a href="{{ el.get_absolute_url }}">{{ el.topic }}</a></p></div>
     </div>
     <div class="row info">
       <div class="col-5 textwhoadded">Added by: {{ el.user.username }}</div>
       <div class="col-5 textwhenadded">Date of publication: {{ el.date }}</div>
-      <div class="col-2 textcomments">{{el.num_questions }}  <i class="far fa-eye"></i> </div>
+      <div class="col-2 textcomments">{{  el.quests.count }}  <i class="fa-regular fa-comment-dots"></i> </div>
     </div>
   </div>
 </div> 

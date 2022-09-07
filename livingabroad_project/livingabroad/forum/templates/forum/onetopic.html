@@ -65,26 +65,13 @@
 {% for el in allquestions %}
     <div class="container tagquestion ">
       <div class="row">
-        <div class="col-2 textauthor"> <em>{{request.user.username}}</em> </div>
+        <div class="col-2 textauthor"> <em>{{el.user.username}}</em> </div>
         <div class="col-8"></div>
         <div class="col-2 textdate"> <em>{{el.date}}</em></div>
       </div>
       <div class="row">
-        <div class="col questiontext">{{el.question}}</div>
+        <div class="col questiontext"><a href="{{ el.get_absolute_url }}">{{el.question}}</a></div>
       </div>
-      <form  method="post" > {% csrf_token %}
-          <div class="row commentrow">           
-          <div class="col-2 divbtncomment"> <button type='submit' name="comment" class = 'combtn'>Comment</button> </div>
-          <div class="col-10">  {{ form2.as_p }}  </div>
-          <!-- <input type = 'text' class="col-10  comment"  placeholder="You can leave your comment here..."> -->
-          </div>
-      </form>  
-      {% for comment in el.comment %}
-        <div class="row commentrow">
-          <div class="col-2"></div>
-        <div class="col-10  comment"><em class="whowrite">{{ comment.date }} {{request.user.username}} :</em> This is your text comment</div>
-        </div>
-      {% endfor %}
   </div>
 {% endfor %}
 
