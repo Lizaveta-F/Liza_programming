@@ -1,0 +1,13 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+{% block title %}Vacancies {% endblock %}
+
+{% block content %}
+
+     
+{% for el in Vacancies %}
+    {{ el.title }}
+
+{% endfor %}
+    
+{% endblock %}

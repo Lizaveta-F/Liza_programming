@@ -1,0 +1,381 @@
+/* LOGIN PAGE */
+
+.vh-100{
+    background-image: url("https://s27363.pcdn.co/wp-content/uploads/2020/05/Scotland-Itinerary.jpg.optimal.jpg");
+    height: 70%;
+  }
+  .main-text, .signin-text{
+    font-family: 'Amatic SC', cursive;
+    letter-spacing: 0.4em;
+  }
+  .form-label{
+  font-family: 'Amatic SC', cursive;
+  }
+  
+  .typeintext{
+    letter-spacing: 0.2em;
+  }
+  
+  .explore {
+    display: inline-block;
+    margin-right: 30px;}
+  .home{
+    display: inline-block;
+  }
+  .forum{
+    display: inline-block;
+    margin-right: 30px;
+  }
+  .about{
+    font-family: 'Amatic SC', cursive;
+    text-align: right;
+    margin: 0;
+    padding-right: 60px;
+    padding-top: 5px;
+    font-size: large;
+  }
+  a{
+    text-decoration: none;
+    color: black;
+  }
+  a:hover{
+    color: #16888b;
+  }
+  
+  .footer{
+    padding-top: 30px;
+    text-align: center;
+    font-size: 10px;
+    height: fit-content;
+    width: 30%;
+    margin: 0% 33%;
+    line-height: 10px;
+  }
+  
+  .login-name{
+    margin-bottom: 60px;
+  }
+  
+  .maincard{
+    height: 590px;
+  }
+  
+  .budka{
+    height: 100%;
+    object-fit: cover;	
+  }
+  
+  
+  .form-outline{
+    width: 400px;
+  }
+  
+  .g-0{
+    height: 100%;
+  }
+  
+  .danger{
+    font-size: 10px;
+    color: #eb0000;
+    margin: 0;
+  }
+  
+  .btnsignup{
+    margin-bottom: 0%;
+  }
+  
+  /* FORUM HOME WITHOUT REGISTRATION */
+  .txt-title1{
+    font-family: 'Amatic SC', cursive;
+    color:rgb(0, 0, 0);
+    margin-left: 15px;
+  }
+  .txt-title2{
+    font-size:30px;
+     font-family: 'Amatic SC', cursive;
+    color:gray;
+    margin-left: 15px;
+  }
+  
+  .txt-about{
+    font-family: 'Amatic SC', cursive;
+    color:black;
+    text-align:center;
+    margin-top:0;
+    padding-top:0;
+  }
+  .myButton {
+  background-color:#e04141;
+  border-radius:11px;
+  display:inline-block;
+  cursor:pointer;
+  color:#fffcff;
+  font-family:'Amatic SC', cursive;
+  font-size:15px;
+  font-weight:bold;
+  padding:6px 7px;
+  text-decoration:none;
+  text-shadow:0px 0px 15px #ffffff;
+  }
+  .myButton:hover {
+  background-color:#6675bd;
+  }
+  .myButton:active {
+  position:relative;
+  top:1px;
+  }
+  
+  
+  .btn-descr{
+    margin-left:42%;
+  }
+  .forumbod{
+    background-image: url("https://bogatyr.club/uploads/posts/2021-11/thumbs/1636938379_12-bogatyr-club-p-angliya-fon-12.jpg");
+  }
+  .forum-title{
+    letter-spacing: 1rem;
+  }
+  .description{
+    border-radius: 1rem; 
+    width: 400px;
+    margin-top: 30px;
+    background-color: white;
+  }
+  
+  .myButton1 {
+      background-color:#e00909;
+      border-radius:14px;
+      border:2px solid #ffffff;
+      display:inline-block;
+      cursor:pointer;
+      color:#000000;
+      font-family:'Amatic SC', cursive;
+      font-size:25px;
+      padding:10px 60px;
+      text-decoration:none;
+    
+  }
+  .myButton1:hover {
+      background:rgb(42, 42, 179);
+  }
+  .myButton1:active {
+      position:relative;
+      top:1px;
+  }
+  .rasp1{
+    height: 220px;
+  }
+  
+  
+  /* Forum Home with registration */
+  
+  .myButton2 {
+    
+    background-color:#ffffff;
+  border-radius:13px;
+  border-color: #000000;
+  border-width: 1px;
+  display:inline-block;
+  cursor:pointer;
+  color:#000000;
+  font-family:Times New Roman;
+  font-size:19px;
+  font-weight:bold;
+  padding:6px 10px;
+  text-decoration:none;
+  }
+  .myButton2:hover {
+  
+  background-color:rgb(185, 172, 172);
+  }
+  .myButton2:active {
+  position:relative;
+  top:1px;
+  }
+  
+  .contbtn{
+    margin-right:auto;
+    margin-left:auto;
+    text-align: center;
+    padding: 0;
+    margin-bottom: 0%;
+    margin-top: 100px;
+  }
+  .mainblock{
+    margin-top:30px;
+    width:1000px;
+    margin-right:auto;
+    margin-left:auto;
+    height:fit-content;
+    background-color:white ;
+    border-radius:20px;
+    padding-bottom:20px;
+    padding-top: 20px;
+    position: relative;
+  }
+  
+  .welcometext{ 
+  display: inline-block;
+  margin-right: 30px;
+  background-color: #fffcff;
+  width: fit-content;
+  border-radius: 5px;
+  padding: 2px;
+  }
+    
+  
+  
+  .blockn{
+      width: 900px;
+      height:fit-content;
+      border:2px solid #777477;
+      border-radius:8px;
+      background-color:#F5F5F5;
+      margin-right:auto;
+      margin-left:auto;
+      margin-bottom:20px;
+      margin-top: 30px;
+      display:inline-block
+  }
+  
+  .textopic{
+    
+      height:fit-content;
+      border:2px solid #777477;
+      border-radius:8px;
+      background-color:#F5F5F5;
+      margin-left:10px;
+      margin-bottom:10px;
+      margin-top: 10px;
+      font-weight: bold;
+      
+  }
+  
+  .textwhoadded{
+    text-align: left;
+    font-size: 12px;
+  
+  }
+  .textcomments{
+    text-align: center;
+    font-size: 12px;
+  }
+  .textwhenadded{
+    text-align: left;
+    font-size: 12px;
+  }
+  .info{
+    margin-bottom: 10px;
+  }
+  .myButton3 {
+   
+  background-color:#ffffff;
+  border-radius:13px;
+  border:2px solid #58373723;
+  display:inline-block;
+  cursor:pointer;
+  color:#000000;
+  font-family:Times New Roman;
+  font-size:15px;
+  padding:5px 5px;
+  text-decoration:none;
+  text-align:left ;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  }
+  .myButton3:hover {
+  background-color:rgb(185, 172, 172);
+  }
+  .myButton3:active {
+  position:relative;
+  top:1px;
+  }
+  
+  .onet{
+    text-align: left;
+    margin-left: 30px;
+  }
+  
+  .comments{
+    width: 800px;
+    height:fit-content;
+    border:2px solid #777477;
+    border-radius:8px;
+    background-color:#b1a7a7;
+    margin-bottom:20px;
+    margin-top: 30px;
+    font-weight: 200;
+    margin-left: 10px;
+  }
+  
+  .textcomment{
+    height:fit-content;
+      border:2px solid #d1c7d1;
+      border-radius:8px;
+      background-color:#F5F5F5;
+      margin-left:10px;
+      margin-bottom:10px;
+      margin-top: 10px;
+  }
+  
+
+
+  .textform{
+
+   font-size: 5px;
+  }
+  
+  
+  
+  /* TOPICS */
+  
+  .hidden{
+    display:none;
+  }
+  
+  
+  @media screen and (max-width: 995px){
+    .blockn{    
+      width:700px;  
+    }
+    .mainblock{
+      margin-top:30px;
+      width:800px;
+      margin-right:auto;
+      margin-left:auto;
+      position: relative;
+    }  
+  }
+  
+  @media screen and (max-width: 771px){
+    .blockn{ 
+      width:500px;   
+      padding-right:10px;
+      padding-left:10px;  
+      margin:0; 
+    } 
+    .mainblock{
+      margin-top:30px;
+      width:700px;
+      margin-right:auto;
+      margin-left:auto; 
+      position: relative;
+  }
+  }
+  
+  @media screen and (max-width: 577px){
+    .blockn{ 
+      width:450px;   
+      padding-right:10px;
+      padding-left:10px;  
+      margin:0; 
+    } 
+    .mainblock{
+      margin-top:30px;
+      width:500px;
+      margin-right:auto;
+      margin-left:auto; 
+      position: relative;
+      text-align: center;
+  }
+  }
