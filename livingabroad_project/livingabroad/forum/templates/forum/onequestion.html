@@ -42,7 +42,7 @@
                     <div class="row textauthor"> <div> <em>{{el.user.username}}</em> </div> </div> 
                     <div class="row commdate"> <em>{{el.date}}</em></div>
                 </div>
-                <div class="col-10 commenttext"><p>{{el.comment}}</p></div>
+                <div class="col-10 commenttext"><p>{{el.comment| urlize}}</p></div>
             </div>   
         
         {% endfor %}
