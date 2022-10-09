@@ -1,0 +1,28 @@
+{% extends 'food/base.html' %}
+{% load static %}
+
+{% block body %}
+
+<div class="container">
+<div class="row">
+    <div class="col-md-6">
+        <img src="{{ item.item_image }}" class = "card" height="250px" width="350px">
+    </div>
+    <div class="col-md-6">
+        <h1> {{ object.item_name }} </h1>
+
+        <h2> {{ object.item_desc }} </h2>
+
+        <h3> {{ object.item_price }}</h3>
+        <form  method="get">
+            <a href="{% url 'food:delete' item.id %}" class="btn btn-sm btn-warning">Delete Item</a>
+        </form>
+
+        
+    </div>
+</div>
+</div>
+
+
+{% endblock %}
+
