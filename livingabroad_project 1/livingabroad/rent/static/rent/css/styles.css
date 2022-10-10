@@ -1,0 +1,114 @@
+.explore {
+    display: inline-block;
+    margin-right: 30px;}
+.home{
+    display: inline-block;
+  }
+.forum{
+    display: inline-block;
+    margin-right: 30px;
+  }
+.about{
+    font-family: 'Amatic SC', cursive;
+    text-align: right;
+    margin: 0;
+    padding-right: 60px;
+    padding-top: 5px;
+    font-size: large;
+  }
+a{
+    text-decoration: none;
+    color: black;
+  }
+a:hover{
+    color: #16888b;
+  }
+.footer{
+    padding-top: 30px;
+    text-align: center;
+    font-size: 10px;
+    height: fit-content;
+    width: 30%;
+    margin: 0% 33%;
+  }
+  
+
+.rasp{
+  height: 2px;
+}
+.authors{
+  margin: 5px;
+}
+
+.imgflat{
+height: 110px;
+width: 110px;
+}
+
+.jobstitle{
+    font-family: 'Amatic SC', cursive;
+    text-align: left;
+    letter-spacing: 0.5vw;
+    margin-left: 10%;
+    font-size: 60px;
+  }
+
+  .flats{
+      border:2px dashed gray;
+      border-radius:6px;
+      margin-top:5px;
+      background-color:#f8fdff;
+  }
+
+.pagination{
+    margin-top: 10px;
+    margin: 1% 43%;
+}
+
+.titlerent{
+    font-family: 'Alegreya', serif;
+}
+
+.price{
+    font-size: 17px;
+    color: rgb(46, 8, 134);
+    font-weight: bold;
+}
+.searchfield{
+    margin-top: 1%;
+    margin-left: 65%;
+    margin-bottom: 2%;
+}
+
+.btn {
+  -webkit-border-radius: 10;
+  -moz-border-radius: 10;
+  border-radius: 10px;
+  color: black;
+  font-family: 'Amatic SC', cursive;
+  font-size: 20px;
+  padding: 1px 8px 1px 8px;
+  border: solid #292329 2px;
+  text-decoration:solid;
+  background: transparent;
+}
+
+.btn:hover {
+  text-decoration: none;
+  font-size: 21px;
+  background: transparent;
+}
+
+.textfield{
+  width: 300px;
+  border-radius: 5px;
+  height: fit-content;
+  font-size: 15px;
+}
+.location{
+  color: rgb(151, 4, 60);
+  font-size: 17px;
+}
+.location2{
+  font-weight: bold;
+}

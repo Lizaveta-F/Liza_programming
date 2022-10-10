@@ -88,7 +88,7 @@ def topics(request):
             return redirect('topics')
     questions = Topics.objects.annotate(questions_count=Count('quests')) 
     form = TopicsForm()
-    alltopics = Topics.objects.all()
+    alltopics = Topics.objects.all().order_by('-date')
     data = {'form':form,'alltopics': alltopics,'questions':questions}
     
     return render(request,'forum/topics.html',data)

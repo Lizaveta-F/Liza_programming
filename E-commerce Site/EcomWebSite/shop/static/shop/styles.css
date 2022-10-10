@@ -1,0 +1,10 @@
+.card-text{
+    color:green;
+    font-weight: 800;
+    text-align: center;
+}
+
+.card-title {
+    font-weight: bolder;
+    text-align: center;
+}

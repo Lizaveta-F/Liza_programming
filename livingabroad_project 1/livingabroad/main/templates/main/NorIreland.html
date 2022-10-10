@@ -1,0 +1,93 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+{% block title %}Northern Ireland {% endblock %}
+
+{% block content %}
+   
+<div class="title">
+    <h1 class = 'title'>
+        NoRtHeRn IrElAnD
+   </h1>  
+</div>
+
+
+<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="{% static 'main/pictures/ireland1.jpeg' %}" alt="pictureEng" class="d-block w-100" height="500px">
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'main/pictures/ireland2.jpeg' %}" alt="pictureEng" class="d-block w-100" height="500px">
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'main/pictures/ireland3.jpeg' %}" alt="pictureEng" class="d-block w-100"  height="500px">
+      </div>
+    </div>
+    <a class="carousel-control-prev" role="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <!-- <span class="visually-hidden">Previous</span> -->
+    </a>
+    <a class="carousel-control-next" role="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <!-- <span class="visually-hidden">Next</span> -->
+    </a>
+  </div>
+
+  
+   <hr class="engborder">
+<!-- Study and work -->
+  <div class="container text-center blocksworkstudy">
+    <div class="row justify-content-md-center ">
+      <div class="col engdescr">
+        <p>
+        Getting your head around the UK job market is the first step you should take when searching for new employment. 
+        The UK is one of the strongest economies in the world and therefore attracts large numbers of ambitious minds to its workforce.</p>
+        <button class="btnall"> <a href="{% url 'work_northireland' %} " class="btn-others">Jobs in Northern Ireland</a> </button> 
+      </div>
+      <div class="col" >
+        <img src="{% static 'main/pictures/irelandwork.jpg' %}" alt="work in Northern Ireland" height="300px" class="engfoto">
+      </div>
+      <div class="col" >
+        <img src="{% static 'main/pictures/irelandstudy.jpg' %}" alt="study in Northern Ireland" height="300px" class="engfoto">
+      </div>
+      <div class="col engdescr">
+        <p>
+            Northern Ireland's two universities are a firmly-established part of the history and 
+            tradition of UK higher education which is 
+            reflected in the quality assurance, research culture and approach to teaching and learning. </p>
+        <button class="btnall"><a href="{% url 'NorthernIreland/study' %}" class="btn-others"> Study in Northern Ireland </a></button> 
+      </div> 
+    </div>
+   </div>
+
+   <br>
+   <!-- Properties for rent and storages -->
+   <div class="container text-center blocksflatshops">
+    <div class="row justify-content-md-center ">
+      
+      <div class="col engdescr">
+        <p>
+        RENTING a house in the UK is often the first step for those moving to the country - with a range of options in house size, 
+        contract length and even finding properties with furniture included. 
+        But is it expensive to rent a house in the UK?</p>
+        <button class="btnall"><a href="{% url 'northireland_rent' %}" class="btn-others">Rent in Northern Ireland</a></button> 
+      </div>
+      <div class="col" >
+        <img src="{% static 'main/pictures/irelandflat.webp' %}" alt="flats in Northern Ireland" height="300px" class="engfoto">
+      </div>
+
+      <div class="col" >
+        <img src="{% static 'main/pictures/irelandstores.jpg' %}" alt="stores in Northern Ireland" height="300px" class="engfoto">
+      </div>
+      <div class="col engdescr">
+        <p>It's not just about hitting the shops on a city break to Northern Ireland. 
+            It's about capturing your very own piece of Northern Ireland. - whether 
+            it is a stunning painting, a beautiful piece of clothing, 
+            or a tasty treat - to take home with you and remind you of your amazing holiday to Northern Ireland..</p>
+        <button class="btnall"><a href="{% url 'Shopping' %}" class="btn-others"> Shop in Northern Ireland </a></button> 
+      </div> 
+    </div>
+   </div>
+      <br>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+      {% endblock %}
