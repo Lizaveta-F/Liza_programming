@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+    <form method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="" class="form-label">Name</label>
+          <input type="text" class="form-control" id="name" name="name">
+        </div>
+
+        <div class="mb-3">
+            <label for="" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email">
+        </div>
+
+        <div class="mb-3">
+            <label for="" class="form-label">Phone</label>
+            <input type="text" class="form-control" id="phone" name="phone">
+        </div>
+
+        <div class="mb-3">
+            <label for="" class="form-label">About you</label>
+            <textarea type="text" class="form-control" id="summary" name="summary"> </textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="" class="form-label">Degree</label>
+            <input type="text" class="form-control" id="degree" name="degree">
+        </div>
+
+        <div class="mb-3">
+            <label for="" class="form-label">School</label>
+            <input type="text" class="form-control" id="school" name="school">
+        </div>
+
+        <div class="mb-3">
+            <label for="" class="form-label">University</label>
+            <input type="text" class="form-control" id="university" name="university">
+        </div>
+        
+        <div class="mb-3">
+            <label for="" class="form-label">Previous workplaces</label>
+            <textarea type="text" class="form-control" id="previous_work" name="previous_work"></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="" class="form-label">Skills</label>
+            <input type="text" class="form-control" id="skills" name="skills">
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+    </div>
+    </div>
+</body>
+</html>
