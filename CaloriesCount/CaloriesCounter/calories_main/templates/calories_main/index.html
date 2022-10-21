@@ -1,0 +1,119 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    <title>Food</title>
+</head>
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <nav class="navbar navbar-dark bg-primary">
+                    <span class="navbar-brand">Calorie Tracker</span>
+                </nav>
+            </div>
+        </div>
+        <br><br>
+        <h4>Calorie Goal</h4>
+        <br>
+        <div class="row">
+            <div class="col-md-9 offset-1">
+                <div class="progress">                  
+                    <div class="progress-bar bg-success" role="progressbar" aria-label="Basic example" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0"></div>
+                </div>
+            </div>
+        </div>
+        <br><br>
+        <div class="row ">
+            <div class="col-md-10 offset-1">
+                 
+                <form method="POST" >
+                    {% csrf_token %}
+                    <div class="form-group row">
+                    <label class="col-md-2">
+                       <h6>Select Food To Add</h6> 
+                    </label>
+                    <div class="col-md-7">
+                        <select class="form-control" name="food_consumed" id="food_consumed">
+                            {% for item in food %}  
+                            <option value="{{ item.name }}">
+                                {{ item.name }} <br>
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                        <button type="submit" name = "add" class="btn btn-success col-md-2">Add</button>
+                    </div>
+                </form> 
+                 </div>           
+            </div>
+        </div>
+        <br>
+        <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+                <div>
+                    <h4>Today's Consumption </h4>
+                </div>
+                <table id="table" class="table table-striped table-primary table-hover">
+                    <tr class="bg-primary text-white">
+                        <th>Food item</th>
+                        <th>Carbs(gm) </th>
+                        <th>Protein(gm) </th>
+                        <th>Fats(gm)</th>
+                        <th>Calories(Kcal)</th>
+                        <th>Remove Item</th>
+                    </tr>
+                    <tr>
+                        {% for c in consumed_food %}
+                        <tr> <td>{{ c.food_consumed.name }}</td> 
+                        <td>{{ c.food_consumed.carbs }}</td>
+                        <td>{{ c.food_consumed.protein }}</td>
+                        <td>{{ c.food_consumed.fats }}</td>
+                        <td> {{ c.food_consumed.calories }}</td>
+                        <td> <a href="{% url 'delete' c.id %}" class = "btn btn-danger">X</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tr>
+                    <tr>
+                        <td id="name" ><h6>Total</h6></td>
+                        <td id="totalCarbs" ><h6></h6></td>
+                        <td id="totalProtein" ><h6></h6></td>
+                        <td id="totalFats" ><h6></h6></td>
+                        <td id="totalCalories" ><h6></h6></td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="col-md-3">
+                <div class="card-header">
+                    <h4>Today's breakdown</h4>
+                </div>
+                <div class="card-header text-white bg-primary">
+                    <h4>Macronutrients breakdown</h4>
+                </div>
+                <div class="col-md-12">
+                    <canvas id="myChart" width="400" height="400"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+<script src="{% static 'calories_main/jsfile.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+
+</html>
