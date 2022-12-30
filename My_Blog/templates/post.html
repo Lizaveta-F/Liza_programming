@@ -1,0 +1,57 @@
+{% include 'header.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+        <!-- Page Header-->
+        <header class="masthead" style="background-image: url({{ post.img_url }})">
+            <div class="container position-relative">
+                <div class="row justify-content-center">
+                    <div class="col">
+                        <div class="post-heading">
+                            <h1>{{ post.title }}</h1>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Post Content-->
+        <article class="mb-4">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <p>{{ post.body }}</p>                       
+                    </div>
+                    <!--Post Comment-->
+                    
+                    {% if current_user.is_authenticated %}
+                    {{ ckeditor.load() }}
+                    {{ ckeditor.config(name='text') }}
+                    {{ wtf.quick_form(form, novalidate=True, button_map={"submit": "primary"}) }}
+                    <div class="col-lg-8 col-md-10 mx-auto comment">
+                        
+                        
+                            {% for comment in post.comments: %}
+                            
+                                <div class="commentText row border border-secondary rounded text-secondary">
+                                     <div class="col-8">{{comment.text|safe}}</div>
+                                     <div class="col-2">{{comment.comment_author.username}}</div>
+                                </div>
+                            
+                            {% endfor %}
+                        
+                        
+                    </div>
+                    {% else %}
+                    <h6 class="subheading" style="color:brown">
+                        You need to
+                        <a href="{{ url_for('login')}}"> login </a>
+                        or
+                        <a href="{{ url_for('register')}}"> register </a>
+                        to comment
+                    </h6>
+                    
+        
+                    
+                    {% endif %}
+        </article>
+        <!-- Footer-->
+        {% include 'footer.html' %}

@@ -1,0 +1,58 @@
+{% include 'header.html' %}
+
+
+<header class="masthead" style="background-image: url({{ url_for('static', filename='img/newpost.jpg') }})">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="page-heading">
+                    {% if msg_sent: %}
+                    <h4>Successfully added your Post =)</h4>
+                    {% else: %}
+                    <h2 style="color: rgb(204, 193, 197)">New post is coming ... </h2>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="container">
+    <div class="row">
+        <div class="col-10">
+        <div class="my-5">
+            <form action="{{ url_for('create_post') }}" method="post" >
+
+                <div class="form-floating">
+                    <input class="form-control" id="title" type="text" placeholder="Enter the title of your blog..." data-sb-validations="required" name="title" />
+                    <label for="title">Title</label>
+                    <div class="invalid-feedback" data-sb-feedback="title:required">A title is required.</div>
+                </div>
+
+                <div class="form-floating">
+                    <input class="form-control" id="subtitle" type="text" placeholder="Enter the subtitle of your blog..." data-sb-validations="required" name="subtitle" />
+                    <label for="subtitle">Subtitle</label>
+                    <div class="invalid-feedback" data-sb-feedback="title:required">A subtitle is required.</div>
+                </div>
+
+                <div class="form-floating">
+                    <textarea class="form-control"  id="body" type="text" placeholder="Enter the text of your blog..." data-sb-validations="required" name="body" cols="30" rows="10"></textarea>
+                    <label for="body">Body</label>
+                    <div class="invalid-feedback" data-sb-feedback="body:required">A text is required.</div>
+                </div>
+
+                <div class="form-floating">
+                    <input class="form-control" id="img-url" type="text" placeholder="Enter the inage URL of your blog..." data-sb-validations="required" name="img-url" />
+                    <label for="img-url">Image URL</label>
+                    <div class="invalid-feedback" data-sb-feedback="img-url:required">An Image URL is required.</div>
+                </div>
+
+                <input class="btn btn-success text-uppercase my-3"  type="submit" value="Post">
+            </form>
+        </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% include 'footer.html' %}

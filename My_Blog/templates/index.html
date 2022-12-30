@@ -1,0 +1,61 @@
+{% include 'header.html' %}
+
+
+        <!-- Page Header-->
+        <header class="masthead" style="background-image: url({{ url_for('static', filename='img/cover.jpg') }})">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="site-heading">
+                            <h1>Hi, I'm Liza!</h1>
+                            <span class="subheading">And this is my blog about KRAKOW =)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Main Content-->
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-9 col-xl-8">
+                    <!-- Post preview-->
+                    {% for post in posts %}
+
+                    <div class="post-preview">
+                           <a href="{{ url_for('show_post', id=post.id)}}"><h2 class="post-title">{{ post.title }}</h2></a> 
+                            <h5 class="post-subtitle">{{ post.subtitle }}</h5>
+                        <p class="post-meta">
+                            Posted on {{ post.date }}
+                        </p>
+                        {% if logged_in: %}
+                        <div class="row delete-edit">
+                            <div class="col-6 "><a href="{{ url_for('post_delete', id=post.id)}}" style="color:red"><p style="font-size:90%;">Delete post</p></a> </div>
+                            <div class="col-6 "><a href="{{ url_for('post_edit', id=post.id)}}" style="color:rgb(92, 36, 156)"><p style="font-size:90%;">Edit post</p></a> </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <!-- Divider-->
+                    <hr class="my-4" />
+                    {% endfor %}
+                    <!-- Pager-->
+                    {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=1) %}
+                    {% if page_num %}
+                        {% if posts.page == page_num %}
+                            <a href="{{ url_for('home', page=page_num)}}" class="btn btn-info">
+                                {{ page_num }}
+                            </a>
+                        {% else %}
+                        <a href="{{ url_for('home', page=page_num)}}" class="btn btn-outline-info">
+                            {{ page_num }}
+                        </a>
+                        {% endif %}
+                    {% else %}
+                        ...
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+{% include 'footer.html' %}
+        
