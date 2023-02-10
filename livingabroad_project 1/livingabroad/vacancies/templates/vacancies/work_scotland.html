@@ -21,7 +21,7 @@
 
 
     
-    {% for el in vacancies_scotland %}
+    {% for el in queryset %}
 
     <div class="container vacancies">
         <div class="row titlevacancies">
@@ -38,20 +38,20 @@
 
 
     
-        {% if vacancies_scotland.has_other_pages %}
+        {% if queryset.has_other_pages %}
         <div class="pagiantion">
         <ul class="pagination">
-            {% if vacancies_scotland.has_previous %}
+            {% if queryset.has_previous %}
         <li class="page-item" >
-            <a class="page-link" href="?page={{ vacancies_scotland.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">Previous</a>
+            <a class="page-link" href="?page={{ queryset.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">Previous</a>
         </li>
         {% else %}
         <li class="page-item disabled" ><a class="page-link" href="#!">Previous</a></li>
             {% endif %}
     
-            {% if vacancies_scotland.has_next %}
+            {% if queryset.has_next %}
             <li class="page-item">
-            <a class="page-link" href="?page={{ vacancies_scotland.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">Next</a>
+            <a class="page-link" href="?page={{ queryset.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">Next</a>
             </li>
             {% else %}
             <li class="page-item disabled"><a class="page-link" href="#!">Next</a></li>

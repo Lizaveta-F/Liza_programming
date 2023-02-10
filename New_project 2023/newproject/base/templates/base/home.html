@@ -1,0 +1,60 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}
+
+<h1>Home</h1>
+
+{% endblock %}
+
+{% block body %}
+<h1>{{ header }}</h1>
+<h2>This is a body of home page</h2>
+
+{% with message=13467.987 %}
+    {{ message|floatformat:0 }}
+    <br>
+   
+{% endwith %}
+    <img class="hello" width="150" height="100" src="{% static 'images/cat.JPG' %}" >
+    <br>
+    {{ datetime|date:"DATETIME_FORMAT" }}
+<br>
+<form  method="post">
+    {% csrf_token %}
+<p>
+    <label >Type your name</label> <br>
+    <input type="text" name="name" />
+</p>
+<p>
+    <label >Type your age</label> <br>
+    <input type="number" name="age" />
+</p>
+
+<input type="submit" value="Send">
+</form>
+
+{% if people.count > 0 %}
+<table>
+    <thead>
+        <tr>
+            <td>id</td>
+            <td>name</td>
+            <td>age </td>
+            
+        </tr>
+    </thead>
+{% for pers in people %}
+
+    <tr>
+        <td> {{ pers.id }} </td>
+        <td> {{ pers.name }} </td>
+        <td> {{pers.age }} </td>
+        <td><a href="change/{{ pers.id }}">Change</a>| <a href="delete/{{ pers.id }}">Delete</a></td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endif %}
+
+{% endblock %}

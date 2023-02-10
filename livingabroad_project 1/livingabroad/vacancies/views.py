@@ -5,6 +5,19 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
 
 
+def paginatorfunc(queryset,request):
+    paginator = Paginator(queryset,25)
+    page = request.GET.get('page')
+    try:
+       queryset = paginator.page(page)
+    except PageNotAnInteger:
+        queryset = paginator.page(1)
+    except EmptyPage:
+        queryset = paginator.page(paginator.num_pages)
+    
+    return {'paginator':paginator, 'page':page, 'queryset':queryset}
+
+
 def work_england(request):
     work_england = Vacancies.objects.all()
     query = request.GET.get('q')
@@ -12,20 +25,7 @@ def work_england(request):
         work_england = Vacancies.objects.filter(
             Q(title__icontains=query)
         ).distinct()
-
-    paginator = Paginator(work_england, 25)
-    page = request.GET.get('page')
-
-    try:
-        work_england = paginator.page(page)
-    except PageNotAnInteger:
-        work_england = paginator.page(1)
-    except EmptyPage:
-        work_england = paginator.page(paginator.num_pages)
-
-    context = {
-        'work_england': work_england
-    }
+    context = paginatorfunc(work_england,request)
     return render(request, "vacancies/work_england.html", context)
 
 
@@ -37,20 +37,8 @@ def work_scotland(request):
             Q(title__icontains=search_query)
         ).distinct()
 
-    paginator = Paginator(vacancies_scotland, 25)
-    page = request.GET.get('page')
-
-    try:
-        vacancies_scotland = paginator.page(page)
-    except PageNotAnInteger:
-        vacancies_scotland = paginator.page(1)
-    except EmptyPage:
-        vacancies_scotland = paginator.page(paginator.num_pages)
-
-    data = {
-        'vacancies_scotland': vacancies_scotland
-    }
-    return render(request, 'vacancies/work_scotland.html', data)
+    context = paginatorfunc(vacancies_scotland,request)
+    return render(request, 'vacancies/work_scotland.html', context)
 
 
 def work_wales(request):
@@ -62,19 +50,7 @@ def work_wales(request):
 
         ).distinct()
 
-    paginator = Paginator(vacancies_wales, 25)  # 6 posts per page
-    page = request.GET.get('page')
-
-    try:
-        vacancies_wales = paginator.page(page)
-    except PageNotAnInteger:
-        vacancies_wales = paginator.page(1)
-    except EmptyPage:
-        vacancies_wales = paginator.page(paginator.num_pages)
-
-    context = {
-        'vacancies_wales': vacancies_wales
-    }
+    context = paginatorfunc(vacancies_wales,request)
     return render(request, "vacancies/work_wales.html", context)
 
 
@@ -87,17 +63,5 @@ def work_northireland(request):
 
         ).distinct()
 
-    paginator = Paginator(vacancies_northireland, 25)
-    page = request.GET.get('page')
-
-    try:
-        vacancies_northireland = paginator.page(page)
-    except PageNotAnInteger:
-        vacancies_northireland = paginator.page(1)
-    except EmptyPage:
-        vacancies_northireland = paginator.page(paginator.num_pages)
-
-    data = {
-        'vacancies_northireland': vacancies_northireland
-    }
-    return render(request, 'vacancies/work_northireland.html', data)
+    context = paginatorfunc(vacancies_northireland, request)
+    return render(request, 'vacancies/work_northireland.html', context)
